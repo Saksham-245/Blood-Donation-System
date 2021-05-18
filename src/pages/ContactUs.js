@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../components/Navbar/Navbar";
 import BreadCrumb from "../components/breadcrumbs/Breadcrumbs";
 import ContactForm from "../components/ContactForm/ContactForm";
+import Footer from "../components/footer/footer";
 const ContactUs = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const ContactUs = () => {
         </h5>
         <ContactForm />
       </div>
+      <Footer />
     </div>
   );
 };

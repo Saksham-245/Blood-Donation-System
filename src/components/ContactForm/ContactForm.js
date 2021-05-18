@@ -20,7 +20,6 @@ const ContactForm = () => {
           message: message,
         }
       );
-      alert("Data Submitted");
     } catch (err) {
       console.log(err);
     }
@@ -36,6 +35,7 @@ const ContactForm = () => {
         type="text"
         className="form-control"
         placeholder="Please enter your full name"
+        required
         onChange={(e) => setFullName(e.target.value)}
       />
       <label htmlFor="phoneNumber" className="form-label">
@@ -45,6 +45,7 @@ const ContactForm = () => {
         id="phoneNumber"
         type="number"
         className="form-control"
+        required
         placeholder="Please enter your Phone number"
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
@@ -55,6 +56,7 @@ const ContactForm = () => {
         type="email"
         className="form-control"
         placeholder="Please enter your email address"
+        required
         onChange={(e) => setEmail(e.target.value)}
       />
       <label htmlFor="message">Message:</label>
@@ -62,6 +64,7 @@ const ContactForm = () => {
         id="message"
         rows="10"
         cols="100"
+        required
         placeholder="Please enter your message"
         className="form-control"
         onChange={(e) => setMessage(e.target.value)}

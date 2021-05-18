@@ -1,6 +1,7 @@
 import React from "react";
 import BreadCrumb from "../components/breadcrumbs/Breadcrumbs";
 import NavBar from "../components/Navbar/Navbar";
+import Footer from "../components/footer/footer";
 const Search = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const Search = () => {
         </h3>
         <BreadCrumb title="Search Donar" />
       </div>
+      <Footer />
     </div>
   );
 };
