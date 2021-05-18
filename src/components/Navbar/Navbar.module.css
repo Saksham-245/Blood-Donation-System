@@ -1,3 +1,4 @@
 .Navs {
   justify-content: flex-end;
+  cursor: pointer;
 }

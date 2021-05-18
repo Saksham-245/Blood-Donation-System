@@ -8,18 +8,31 @@ const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  let submit;
+
   const formSubmit = async (e) => {
     e.preventDefault();
     try {
-      axios.post(
-        "https://blood-donation-e9912-default-rtdb.firebaseio.com/queries.json",
-        {
-          fullName: fullName,
-          phone: phoneNumber,
-          email: email,
-          message: message,
-        }
-      );
+      axios
+        .post(
+          "https://blood-donation-e9912-default-rtdb.firebaseio.com/queries.json",
+          {
+            fullName: fullName,
+            phone: phoneNumber,
+            email: email,
+            message: message,
+          }
+        )
+        .then(() => {
+          setFullName("");
+          setPhoneNumber("");
+          setEmail("");
+          setMessage("");
+        })
+        .catch((err) => {
+          console.log(err);
+          submit = <p>err</p>;
+        });
     } catch (err) {
       console.log(err);
     }
@@ -36,6 +49,7 @@ const ContactForm = () => {
         className="form-control"
         placeholder="Please enter your full name"
         required
+        value={fullName}
         onChange={(e) => setFullName(e.target.value)}
       />
       <label htmlFor="phoneNumber" className="form-label">
@@ -46,6 +60,7 @@ const ContactForm = () => {
         type="number"
         className="form-control"
         required
+        value={phoneNumber}
         placeholder="Please enter your Phone number"
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
@@ -57,6 +72,7 @@ const ContactForm = () => {
         className="form-control"
         placeholder="Please enter your email address"
         required
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <label htmlFor="message">Message:</label>
@@ -65,6 +81,7 @@ const ContactForm = () => {
         rows="10"
         cols="100"
         required
+        value={message}
         placeholder="Please enter your message"
         className="form-control"
         onChange={(e) => setMessage(e.target.value)}
@@ -73,6 +90,7 @@ const ContactForm = () => {
       <button className="btn btn-primary" type="submit">
         Send Message
       </button>
+      {submit}
     </form>
   );
 };
