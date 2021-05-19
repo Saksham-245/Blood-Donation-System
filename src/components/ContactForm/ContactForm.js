@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Message from "../Message/Message";
 import "./contact.css";
 
 const ContactForm = () => {
@@ -8,7 +7,8 @@ const ContactForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [formError, setFormError] = useState(true);
+
+  let submit;
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -23,18 +23,7 @@ const ContactForm = () => {
             message: message,
           }
         )
-        .then((res) => {
-          if (res.status === 200) {
-            setFormError(false);
-            formError ? (
-              <Message title="Data Submitted" />
-            ) : (
-              <Message title="Some error occurred" />
-            );
-          }
-
-          if (res.status !== 200) {
-          }
+        .then(() => {
           setFullName("");
           setPhoneNumber("");
           setEmail("");
@@ -42,6 +31,7 @@ const ContactForm = () => {
         })
         .catch((err) => {
           console.log(err);
+          submit = <p>err</p>;
         });
     } catch (err) {
       console.log(err);
@@ -100,7 +90,7 @@ const ContactForm = () => {
       <button className="btn btn-primary" type="submit">
         Send Message
       </button>
-      {formError}
+      {submit}
     </form>
   );
 };
